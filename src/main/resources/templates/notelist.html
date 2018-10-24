@@ -7,7 +7,7 @@
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/> 
 </head>
 <body>
-	<h1>Books</h1>
+	<h1>Note Pad</h1>
 	
 	<div class="col-md-4">
 		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
@@ -26,7 +26,9 @@
     	<tr th:each = "note : ${notes}">
     		<td th:text="${note.getTitle()}"></td>
     		<td th:text="${note.getContent()}"></td>
- 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${note.getId()})}" class="btn btn-danger">Delete</a></td>   
+ 			<td sec:authorize="hasAuthority('ADMIN')">
+ 				<a th:href="@{/delete/{id}(id=${note.getId()})}" class="btn btn-danger">Delete</a>
+ 			</td>   
     	</tr>
      </table>
 	<p>
