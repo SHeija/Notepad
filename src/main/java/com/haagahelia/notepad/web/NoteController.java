@@ -25,7 +25,7 @@ public class NoteController {
 	}
 	
 	//List all
-	@RequestMapping("/notelist")
+	@RequestMapping({"/", "/notelist"})
 	public String noteList(Model model) {
 		model.addAttribute("notes", noteRepo.findAll());
 		return "notelist";

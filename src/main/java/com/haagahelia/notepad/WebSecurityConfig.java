@@ -24,14 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		 .authorizeRequests().antMatchers("/css/**").permitAll() //enables css when logged out
 		 .and()
-		 .authorizeRequests().antMatchers("/signup", "/saveuser", "/notes", "/notelist").permitAll()
+		 .authorizeRequests().antMatchers("/signup", "/saveuser", "/notes").permitAll()
 		 .and()
 		 .authorizeRequests()
 		 	.anyRequest().authenticated()
 		 	.and()
 		 .formLogin()
 		 	.loginPage("/login")
-		 	.defaultSuccessUrl("/noteslist")
+		 	.defaultSuccessUrl("/notelist")
 		 	.permitAll()
 		 	.and()
 	 	 .logout()

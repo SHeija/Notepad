@@ -38,7 +38,7 @@ public class NotepadApplication {
 			
 			logger.info("Creating test users");
 			//admin, pass: admin
-			User admin = new User("admin", "$2a$10$gpH4plB2xFyqgsvqaAeM8.cjCwyOY6udvrA629vO/LWXK50gm3GeK", "admin@email.com", "ADMIN");
+			User admin = new User("admin", "$2a$10$PFGMaYCLb2A2zxdxUtJBHOuXD5EO0gA/JIRp7KgiHjFe40WVVzQ5a", "admin@email.com", "ADMIN");
 			//user, pass: user
 			User user = new User("user", "$2a$10$VV9CqMVjVtZsQEsc4LaERO2C0Lu1BdmbFAbTCAgBrgHu1GGkLmIim", "user@email.com", "USER");
 			
