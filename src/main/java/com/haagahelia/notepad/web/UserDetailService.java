@@ -1,4 +1,4 @@
-package com.haagahelia.notepad;
+package com.haagahelia.notepad.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
