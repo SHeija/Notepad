@@ -38,9 +38,9 @@ public class NotepadApplication {
 			
 			logger.info("Creating test users");
 			//admin, pass: admin
-			User admin = new User("admin", "$2a$04$6kI461rTmPYiTsVdqfPyLu6WApsx0DJzjVPi2J1cbR8YyH9nof7vC", "admin@email.com", "ADMIN");
+			User admin = new User("admin", "$2a$10$gpH4plB2xFyqgsvqaAeM8.cjCwyOY6udvrA629vO/LWXK50gm3GeK", "admin@email.com", "ADMIN");
 			//user, pass: user
-			User user = new User("user", "$2a$04$IOru3M7tt5HxRdXTkRLOte.fjB/N/4aHy1CDdXeaj3.6lQFrqtq5y", "user@email.com", "USER");
+			User user = new User("user", "$2a$10$VV9CqMVjVtZsQEsc4LaERO2C0Lu1BdmbFAbTCAgBrgHu1GGkLmIim", "user@email.com", "USER");
 			
 			logger.info("Saving demo users");
 			userRepo.save(admin);

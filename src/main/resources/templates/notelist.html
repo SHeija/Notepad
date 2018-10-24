@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.orf/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+	<title>Note List</title>
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/> 
+</head>
+<body>
+	<h1>Books</h1>
+	
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+	</div>
+
+	<table class="table table-striped">
+		<tr>
+		    <th>Title</th>
+		    <th>Note</th>	    
+		</tr>  
+    	<tr th:each = "note : ${notes}">
+    		<td th:text="${note.getTitle()}"></td>
+    		<td th:text="${note.getContent()}"></td>
+ 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${note.getId()})}" class="btn btn-danger">Delete</a></td>   
+    	</tr>
+     </table>
+	<p>
+		<a th:href="@{/add}" class="btn btn-success">Add</a>	
+	</p>
+</body>
+</html>

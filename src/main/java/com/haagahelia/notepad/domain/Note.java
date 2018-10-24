@@ -39,6 +39,10 @@ public class Note {
 	@LastModifiedDate
 	private Date updatedAt;
 	
+	public Note() {
+		
+	}
+	
 	public Note(String title, String content) {
 		super();
 		this.title = title;
