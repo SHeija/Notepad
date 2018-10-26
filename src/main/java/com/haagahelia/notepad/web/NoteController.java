@@ -54,6 +54,13 @@ public class NoteController {
 		return "redirect:../notelist";
 	}
 	
+	//edit via html
+	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+	public String noteEdit(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("note", noteRepo.findById(id));
+		return "editnote";
+	}
+	
 	
 	//REST API
 	

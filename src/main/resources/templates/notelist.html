@@ -26,9 +26,12 @@
     	<tr th:each = "note : ${notes}">
     		<td th:text="${note.getTitle()}"></td>
     		<td th:text="${note.getContent()}"></td>
+    		<td th:text="${note.getOwner().getUsername()}"></td>
  			<td sec:authorize="hasAuthority('ADMIN')">
  				<a th:href="@{/delete/{id}(id=${note.getId()})}" class="btn btn-danger">Delete</a>
- 			</td>   
+ 			</td>
+ 			<td><a th:href="@{/edit/{id}(id=${note.getId()})}" class="btn btn-danger">Edit</a></td>   
+ 			   
     	</tr>
      </table>
 	<p>
