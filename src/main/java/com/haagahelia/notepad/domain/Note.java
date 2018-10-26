@@ -8,6 +8,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +17,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -39,14 +41,19 @@ public class Note {
 	@LastModifiedDate
 	private Date updatedAt;
 	
+	@ManyToOne
+	@JsonIgnore
+	private User owner;
+	
 	public Note() {
 		
 	}
 	
-	public Note(String title, String content) {
+	public Note(String title, String content, User user) {
 		super();
 		this.title = title;
 		this.content = content;
+		this.owner = user;
 	}
 
 	public Long getId() {
@@ -87,6 +94,14 @@ public class Note {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 	
 	

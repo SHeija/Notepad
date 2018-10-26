@@ -28,14 +28,6 @@ public class NotepadApplication {
 	@Bean
 	public CommandLineRunner demo (NoteRepository noteRepo, UserRepository userRepo) {
 		return (args) -> {
-			logger.info("Creating demo notes");
-			Note note1 = new Note("Test1","Lorem ipsum");
-			Note note2 = new Note("Testi2", "Lorem ipsum");
-			
-			logger.info("Saving demo notes");
-			noteRepo.save(note1);
-			noteRepo.save(note2);
-			
 			logger.info("Creating test users");
 			//admin, pass: admin
 			User admin = new User("admin", "$2a$10$PFGMaYCLb2A2zxdxUtJBHOuXD5EO0gA/JIRp7KgiHjFe40WVVzQ5a", "admin@email.com", "ADMIN");
@@ -45,6 +37,16 @@ public class NotepadApplication {
 			logger.info("Saving demo users");
 			userRepo.save(admin);
 			userRepo.save(user);
+			
+			logger.info("Creating demo notes");
+			Note note1 = new Note("Test1","Lorem ipsum -admin", admin);
+			Note note2 = new Note("Testi2", "Lorem ipsum -user", user);
+			
+			logger.info("Saving demo notes");
+			noteRepo.save(note1);
+			noteRepo.save(note2);
+			
+			
 		};
 	}
 	

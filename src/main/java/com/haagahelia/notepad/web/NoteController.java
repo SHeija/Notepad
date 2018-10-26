@@ -33,14 +33,14 @@ public class NoteController {
 		return "notelist";
 	}
 	
-	//add note
+	//add note via html
 	@RequestMapping("/add")
 	public String noteAdd(Model model) {
 		model.addAttribute("note", new Note());
 		return "addnote";
 	}
 	
-	//save note
+	//save note via html
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String noteSave(Note note) {
 		noteRepo.save(note);
