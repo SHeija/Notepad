@@ -1,9 +1,11 @@
 package com.haagahelia.notepad.web;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.haagahelia.notepad.domain.Note;
 import com.haagahelia.notepad.domain.NoteRepository;
+import com.haagahelia.notepad.domain.User;
+import com.haagahelia.notepad.domain.UserRepository;
 
 @Controller
 public class NoteController {
@@ -20,18 +24,32 @@ public class NoteController {
 	@Autowired
 	private NoteRepository noteRepo;
 	
+	@Autowired
+	private UserRepository userRepo;
+	
 	//Login
 	@RequestMapping(value="/login")
 	public String login() {
 		return "login";
 	}
 	
-	//List all
+	//List own notes
+	@RequestMapping({"/", "/notelist"})
+	public String noteList(Model model, Principal principal) {
+	    String name = principal.getName(); //get logged in username
+	    User user = userRepo.findByUsername(name); //get logged in user based on username
+		model.addAttribute("notes", noteRepo.findByOwner(user));
+		return "notelist";
+	}
+	
+	/*
+	//List all notes AKA admin superview
 	@RequestMapping({"/", "/notelist"})
 	public String noteList(Model model) {
 		model.addAttribute("notes", noteRepo.findAll());
 		return "notelist";
 	}
+	*/
 	
 	//add note via html
 	@RequestMapping("/add")

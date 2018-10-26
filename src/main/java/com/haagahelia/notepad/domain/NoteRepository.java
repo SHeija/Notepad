@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface NoteRepository extends CrudRepository<Note, Long> {
 	List<Note> findByTitle(String title);
+	List<Note> findByOwner(User owner);
 
 }
