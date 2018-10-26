@@ -33,6 +33,7 @@ public class NoteController {
 		return "login";
 	}
 	
+	
 	//List own notes
 	@RequestMapping({"/", "/notelist"})
 	public String noteList(Model model, Principal principal) {
@@ -42,14 +43,15 @@ public class NoteController {
 		return "notelist";
 	}
 	
-	/*
+	
 	//List all notes AKA admin superview
-	@RequestMapping({"/", "/notelist"})
+    @PreAuthorize("hasAuthority('ADMIN')")
+	@RequestMapping({"/admin"})
 	public String noteList(Model model) {
 		model.addAttribute("notes", noteRepo.findAll());
 		return "notelist";
 	}
-	*/
+	
 	
 	//add note via html
 	@RequestMapping("/add")
@@ -60,7 +62,10 @@ public class NoteController {
 	
 	//save note via html
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String noteSave(Note note) {
+	public String noteSave(Note note, Principal principal) {
+		String name = principal.getName(); //get logged in username
+	    User user = userRepo.findByUsername(name); //get logged in user based on username
+	    note.setOwner(user); //Set current user as owner
 		noteRepo.save(note);
 		return "redirect:notelist";
 	}
