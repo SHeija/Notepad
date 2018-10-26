@@ -21,12 +21,19 @@
 	<table class="table table-striped">
 		<tr>
 		    <th>Title</th>
-		    <th>Note</th>	    
+		    <th>Note</th>
+		    <th>Author</th>
+		    <th>Date created</th>
+		    <th>Date Updated</th>
+		    <th></th>
+		    <th></th>	    
 		</tr>  
     	<tr th:each = "note : ${notes}">
     		<td th:text="${note.getTitle()}"></td>
     		<td th:text="${note.getContent()}"></td>
     		<td th:text="${note.getOwner().getUsername()}"></td>
+    		<td th:text="${note.getCreatedDate()}"></td>
+    		<td th:text="${note.getUpdatedAt()}"></td>
  			<td sec:authorize="hasAuthority('ADMIN')">
  				<a th:href="@{/delete/{id}(id=${note.getId()})}" class="btn btn-danger">Delete</a>
  			</td>
