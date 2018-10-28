@@ -49,6 +49,12 @@ public class Note {
 		
 	}
 	
+	public Note(String title, String content) {
+		super();
+		this.title=title;
+		this.content=content;
+	}
+	
 	public Note(String title, String content, User user) {
 		super();
 		this.title = title;
