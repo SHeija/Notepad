@@ -33,6 +33,9 @@ public class NoteController {
 	//List own notes
 	@RequestMapping({"/", "/notelist"})
 	public String noteList(Model model, Principal principal) {
+		boolean adminViewOn = false; //toggles "admin superview" button
+    	model.addAttribute("adminView", adminViewOn);
+		
 	    String name = principal.getName(); //get logged in username
 	    User user = userRepo.findByUsername(name); //get logged in user object based on username
 		model.addAttribute("notes", noteRepo.findByOwner(user));
@@ -43,6 +46,9 @@ public class NoteController {
     @PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping({"/admin"})
 	public String noteList(Model model) {
+    	boolean adminViewOn = true; //toggles "admin superview" button
+    	model.addAttribute("adminView", adminViewOn);
+    	
 		model.addAttribute("notes", noteRepo.findAll());
 		return "notelist";
 	}
