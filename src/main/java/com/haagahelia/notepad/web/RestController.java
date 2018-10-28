@@ -24,20 +24,20 @@ public class RestController {
 	
 	//get all notes 
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(value = "/notes", method=RequestMethod.GET)
+	@RequestMapping(value = "/api/notes", method=RequestMethod.GET)
 	public @ResponseBody List<Note> noteListRest(){
 		return (List<Note>) noteRepo.findAll();
 	}
 	
 	//delete via REST
 	@PreAuthorize("hasAuthority('ADMIN')")
-	@RequestMapping(value = "/note/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value = "/api/note/{id}", method=RequestMethod.DELETE)
 	public @ResponseBody void noteDeleteRest(@PathVariable("id") Long id) {
 		noteRepo.deleteById(id);
 	}
 	
 	//get one note
-	@RequestMapping(value = "/note/{id}", method=RequestMethod.GET)
+	@RequestMapping(value = "/api/note/{id}", method=RequestMethod.GET)
 	public @ResponseBody Optional<Note> noteGetRest(@PathVariable("id") Long id) {
 		return noteRepo.findById(id);
 	}
