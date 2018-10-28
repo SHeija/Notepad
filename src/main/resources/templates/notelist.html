@@ -22,7 +22,7 @@
 	</div >
 	<div sec:authorize="hasAuthority('ADMIN')" class="col-md-1" th:switch="${adminView}">
 		 <a th:case="false" th:href="@{/admin}" class="btn btn-warning">Admin superview</a>
-		 <a th:case="true" th:href="@{/notelist}" class="btn btn-warning"></a>
+		 <a th:case="true" th:href="@{/notelist}" class="btn btn-warning">Normal view</a>
 		 
 	</div>
 
