@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class User {
 
@@ -32,6 +34,7 @@ public class User {
     private String role;
     
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	//@JsonBackReference
 	private List<Note> notes;
     
     public User() {

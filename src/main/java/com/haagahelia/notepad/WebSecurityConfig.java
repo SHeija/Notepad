@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -21,22 +22,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure (HttpSecurity http) throws Exception {
-		http
-		 .authorizeRequests().antMatchers("/css/**").permitAll() //enables css when logged out
-		 .and()
-		 .authorizeRequests().antMatchers("/signup", "/saveuser", "/api/**").permitAll()
-		 .and()
-		 .authorizeRequests()
-		 	.anyRequest().authenticated()
-		 	.and()
-		 .formLogin()
-		 	.loginPage("/login")
-		 	.defaultSuccessUrl("/notelist")
-		 	.permitAll()
-		 	.and()
-	 	 .logout()
-	 	 	.permitAll();	 	
+		 http
+	        .authorizeRequests().antMatchers("/css/**", "/signup", "/saveuser").permitAll()
+	        .and()
+	        .authorizeRequests().antMatchers("/api/**").hasAnyRole("ADMIN","USER")
+	        .and()
+	        .authorizeRequests().anyRequest().authenticated()
+	        .and()
+	      .formLogin()
+	          .loginPage("/login")
+	          .defaultSuccessUrl("/notelist", true)
+	          .permitAll()
+	          .and()
+	      .logout()
+	          .permitAll();
 		 
+	}
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+	    web.ignoring().antMatchers("/api/**/**");
 	}
 	
 	@Autowired
