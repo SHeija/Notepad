@@ -5,14 +5,16 @@ Test accounts: admin/admin and user/user
 
 List of REST api endpoints:
 
-/api/notes
-/api/note/{id}
+GET:
+
+/api/notes, 
+/api/note/{id}, 
 /api/{username}/notes
 
 POST:
 
 /api/{username}/notes/save
 
-PUT & DELETE
+PUT & DELETE:
 
 /api/note/{id}
