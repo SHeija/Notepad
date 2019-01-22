@@ -19,4 +19,4 @@ PUT & DELETE:
 
 /api/note/{id}
 
-POST, PUT & DELETE require authentication of some sort
+POST, PUT & DELETE require basic authentication
