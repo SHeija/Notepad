@@ -18,3 +18,5 @@ POST:
 PUT & DELETE:
 
 /api/note/{id}
+
+POST, PUT & DELETE require authentication of some sort
